@@ -14,7 +14,7 @@
       "instance_data_dir": "datasets/faces",
       "disabled": false,
       "skip_file_discovery": "",
-      "caption_strategy": "parquet",
+      "caption_strategy": "textfile",
       "metadata_backend": "json"
     },
     {
