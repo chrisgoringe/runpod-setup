@@ -1,0 +1,5 @@
+git clone https://github.com/chrisgoringe/runpod-setup ; cd runpod-setup
+
+bash simpletuner.bash 
+OR
+bash runpod.bash
