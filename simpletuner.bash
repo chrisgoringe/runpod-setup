@@ -17,4 +17,4 @@ pushd datasets
     git clone https://huggingface.co/datasets/ChrisGoringe/faces
 popd
 
-#bash train.sh
+#cd SimpleTuner; source .venv/bin/activate; bash train.sh
