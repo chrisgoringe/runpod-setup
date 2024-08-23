@@ -32,9 +32,11 @@ pushd /workspace
         pushd models/unet
             wget --header "Authorization: Bearer $HF_READ" $model
         popd
-        python main.py --listen
+        python main.py &
     popd
 popd
+
+python comfy-api.py
 
 
 
