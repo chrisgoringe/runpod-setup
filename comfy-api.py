@@ -4,7 +4,7 @@ import random
 from functools import partial
 
 def queue_prompt(make_changes:list[callable]):
-    with open('workflow-api.json', 'r') as f: prompt = json.load(f)
+    with open('workflow_api.json', 'r') as f: prompt = json.load(f)
 
     for change in make_changes: change(prompt)
 
@@ -20,4 +20,5 @@ def set_all_seeds(theseed, prompt):
                     prompt[node]['inputs'][input] = theseed
 
 if __name__=='__main__':
-    queue_prompt([partial(set_all_seeds, random.randint(0,1e9)),])
+    for _ in range(12):
+        queue_prompt([partial(set_all_seeds, random.randint(0,1e9)),])
