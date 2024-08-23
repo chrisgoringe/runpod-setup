@@ -37,6 +37,7 @@ popd
 
 pushd /workspace/ComfyUI
     python main.py &
+    sleep 10
 popd
 
 python comfy-api.py

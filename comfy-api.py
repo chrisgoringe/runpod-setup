@@ -22,3 +22,4 @@ def set_all_seeds(theseed, prompt):
 if __name__=='__main__':
     for _ in range(12):
         queue_prompt([partial(set_all_seeds, random.randint(0,1e9)),])
+        
