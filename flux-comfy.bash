@@ -9,11 +9,14 @@ pushd /workspace
         pip install -r requirements.txt
         pushd models
             pushd clip
-                wget https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp16.safetensors
-                wget https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/clip_l.safetensors
+                wget https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp16.safetensors &
+                wget https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/clip_l.safetensors &
             popd
             pushd vae
-                wget https://huggingface.co/black-forest-labs/FLUX.1-schnell/resolve/main/ae.safetensors
+                wget https://huggingface.co/black-forest-labs/FLUX.1-schnell/resolve/main/ae.safetensors &
+            popd
+            pushd unet
+                wget --header "Authorization: Bearer $HF_READ" $model &
             popd
         popd
         pushd custom_nodes
@@ -29,13 +32,11 @@ pushd /workspace
                     done
             popd
         popd
-        pushd models/unet
-            wget --header "Authorization: Bearer $HF_READ" $model
-        popd
     popd
 popd
 
 pushd /workspace/ComfyUI
+    wait $(jobs -p)
     python main.py &
     sleep 10
 popd

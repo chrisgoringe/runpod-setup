@@ -20,6 +20,6 @@ def set_all_seeds(theseed, prompt):
                     prompt[node]['inputs'][input] = theseed
 
 if __name__=='__main__':
-    for _ in range(12):
+    for _ in range(11):
         queue_prompt([partial(set_all_seeds, random.randint(0,1e9)),])
         
