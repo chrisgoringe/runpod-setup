@@ -6,7 +6,6 @@ model="https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/flux1-de
 pushd /workspace
     git clone http://github.com/comfyanonymous/ComfyUI
     pushd ComfyUI
-        pip install -r requirements.txt
         pushd models
             pushd clip
                 wget https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp16.safetensors &
@@ -19,6 +18,7 @@ pushd /workspace
                 wget --header "Authorization: Bearer $HF_READ" $model &
             popd
         popd
+        pip install -r requirements.txt
         pushd custom_nodes
             git clone https://github.com/chrisgoringe/flux-poke
             git clone https://github.com/chrisgoringe/cg-use-everywhere
