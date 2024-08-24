@@ -1,7 +1,8 @@
-import json
+import json, time
 from urllib import request
 import random
 from functools import partial
+import requests
 
 def queue_prompt(make_changes:list[callable]):
     with open('workflow_api.json', 'r') as f: prompt = json.load(f)
@@ -22,4 +23,14 @@ def set_all_seeds(theseed, prompt):
 if __name__=='__main__':
     for _ in range(11):
         queue_prompt([partial(set_all_seeds, random.randint(0,1e9)),])
+
+    def inq():
+        a = requests.get("http://127.0.0.1:8188/queue").json()
+        b = requests.get("http://127.0.0.1:8188/upload_queue").json()
+
+        total_queue = int(b['upload_queue'] )+ int(a['queue_running']) + int(a['queue_pending'])
+        print(f"Total queues {total_queue}")
+        return total_queue
+    
+    while inq(): time.sleep(30)
         

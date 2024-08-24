@@ -34,8 +34,8 @@ pushd /workspace/ComfyUI
     sleep 10
 popd
 
-python comfy-api.py &
-sleep 1500
+python comfy-api.py
+sleep 30
 runpodctl remove pod $RUNPOD_POD_ID
 
 
