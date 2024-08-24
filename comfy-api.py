@@ -28,7 +28,7 @@ def wait_for_ready():
         except:
             time.sleep(5)
 
-def wait_for_done():
+def wait_for_done(extra):
     def inq():
         a = requests.get("http://127.0.0.1:8188/queue").json()
         total_queue = len(a['queue_running']) + len(a['queue_pending'])
@@ -37,12 +37,13 @@ def wait_for_done():
         return total_queue
     
     while inq():
+        time.sleep(10)
         while inq(): 
-            time.sleep(30)
-        time.sleep(30)
-    time.sleep(60)
+            time.sleep(10)
+        time.sleep(10)
+    time.sleep(extra)
 
 if __name__=='__main__':
     wait_for_ready()
     for _ in range(11): queue_prompt([partial(set_all_seeds, random.randint(0,1e9)),])
-    wait_for_done()
+    wait_for_done(extra=60)
