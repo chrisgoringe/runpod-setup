@@ -28,9 +28,12 @@ if __name__=='__main__':
         a = requests.get("http://127.0.0.1:8188/queue").json()
         b = requests.get("http://127.0.0.1:8188/upload_queue").json()
 
-        total_queue = int(b['upload_queue'] )+ int(a['queue_running']) + int(a['queue_pending'])
+        total_queue = int(b['upload_queue'] )+ len(a['queue_running']) + len(a['queue_pending'])
         print(f"Total queues {total_queue}")
         return total_queue
     
-    while inq(): time.sleep(30)
-        
+    while inq():
+        while inq(): 
+            time.sleep(30)
+        time.sleep(30)
+    time.sleep(60)

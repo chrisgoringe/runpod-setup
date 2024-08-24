@@ -30,12 +30,12 @@ popd
 
 pushd /workspace/ComfyUI
     wait $(jobs -p)
-    python main.py &
+    python main.py --listen &
     sleep 10
 popd
 
 python comfy-api.py
-sleep 30
+
 runpodctl remove pod $RUNPOD_POD_ID
 
 
