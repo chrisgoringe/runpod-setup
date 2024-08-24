@@ -20,16 +20,20 @@ def set_all_seeds(theseed, prompt):
                 if input=='seed' or input=='noise_seed':
                     prompt[node]['inputs'][input] = theseed
 
-if __name__=='__main__':
-    for _ in range(11):
-        queue_prompt([partial(set_all_seeds, random.randint(0,1e9)),])
+def wait_for_ready():
+    while True:
+        try:
+            requests.get("http://127.0.0.1:8188/queue").json()
+            return
+        except:
+            time.sleep(5)
 
+def wait_for_done():
     def inq():
         a = requests.get("http://127.0.0.1:8188/queue").json()
-        b = requests.get("http://127.0.0.1:8188/upload_queue").json()
-
-        total_queue = int(b['upload_queue'] )+ len(a['queue_running']) + len(a['queue_pending'])
-        print(f"Total queues {total_queue}")
+        total_queue = len(a['queue_running']) + len(a['queue_pending'])
+        try: total_queue += int( requests.get("http://127.0.0.1:8188/upload_queue").json()['upload_queue'] )
+        except: pass
         return total_queue
     
     while inq():
@@ -37,3 +41,8 @@ if __name__=='__main__':
             time.sleep(30)
         time.sleep(30)
     time.sleep(60)
+
+if __name__=='__main__':
+    wait_for_ready()
+    for _ in range(11): queue_prompt([partial(set_all_seeds, random.randint(0,1e9)),])
+    wait_for_done()

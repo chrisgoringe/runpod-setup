@@ -31,7 +31,6 @@ popd
 pushd /workspace/ComfyUI
     wait $(jobs -p)
     python main.py --listen &
-    sleep 10
 popd
 
 python comfy-api.py
