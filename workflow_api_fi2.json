@@ -82,7 +82,7 @@
   },
   "25": {
     "inputs": {
-      "noise_seed": 72321903063232
+      "noise_seed": 545416126539981
     },
     "class_type": "RandomNoise",
     "_meta": {
@@ -123,7 +123,7 @@
   "103": {
     "inputs": {
       "index": -1,
-      "seed": 1463,
+      "seed": 1286,
       "reload": "no",
       "filename": "prompts_dataset"
     },
@@ -134,7 +134,7 @@
   },
   "105": {
     "inputs": {
-      "seed": 1944,
+      "seed": 62,
       "flip": 0.5
     },
     "class_type": "Random Size",
@@ -172,7 +172,7 @@
     "inputs": {
       "track_hidden_states": "yes",
       "just_in_out": "yes",
-      "track_internals": "yes",
+      "track_internals": "no",
       "model": [
         "62",
         0
@@ -199,7 +199,7 @@
   },
   "110": {
     "inputs": {
-      "seed": 1612,
+      "seed": 1444,
       "minimum": 15,
       "maximum": 30
     },
