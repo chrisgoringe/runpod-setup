@@ -7,15 +7,15 @@ pushd /workspace
     git clone http://github.com/comfyanonymous/ComfyUI
     pushd ComfyUI
         pushd models
+            pushd unet
+                wget --header "Authorization: Bearer $HF_READ" $model &
+            popd
             pushd clip
                 wget https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp16.safetensors &
                 wget https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/clip_l.safetensors &
             popd
             pushd vae
                 wget https://huggingface.co/black-forest-labs/FLUX.1-schnell/resolve/main/ae.safetensors &
-            popd
-            pushd unet
-                wget --header "Authorization: Bearer $HF_READ" $model &
             popd
         popd
         pip install -r requirements.txt
