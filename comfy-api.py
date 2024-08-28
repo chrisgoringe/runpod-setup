@@ -14,11 +14,14 @@ def queue_prompt(jsonfile, make_changes:list[callable]):
     request.urlopen(req)
 
 def set_all_seeds(theseed, prompt):
+    count = 0
     for node in prompt:
         if 'inputs' in node:
             for input in node['inputs']:
                 if input=='seed' or input=='noise_seed':
                     prompt[node]['inputs'][input] = theseed
+                    count += 1
+        print(f"set {count} seeds to {theseed}")
 
 def wait_for_ready():
     while True:
@@ -54,7 +57,7 @@ if __name__=='__main__':
     wait_for_ready()
     #download_internals()
     jsonfile = 'workflow_api_fi2.json'
-    for _ in range(100): queue_prompt(jsonfile=jsonfile, make_changes=[partial(set_all_seeds, random.randint(0,1e9)),])
+    for _ in range(3): queue_prompt(jsonfile=jsonfile, make_changes=[partial(set_all_seeds, random.randint(0,1e9)),])
     wait_for_done()
     #upload_internals()
     time.sleep(10)
