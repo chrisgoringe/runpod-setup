@@ -4,8 +4,8 @@ import random
 from functools import partial
 import requests
 
-def queue_prompt(make_changes:list[callable]):
-    with open('workflow_api.json', 'r') as f: prompt = json.load(f)
+def queue_prompt(jsonfile, make_changes:list[callable]):
+    with open(jsonfile, 'r') as f: prompt = json.load(f)
 
     for change in make_changes: change(prompt)
 
@@ -42,9 +42,19 @@ def wait_for_done():
             time.sleep(10)
         time.sleep(10)
 
+def download_internals():
+    a = requests.get("http://127.0.0.1:8188/download_internals").json()
+    print(a)
+
+def upload_internals():
+    a = requests.get("http://127.0.0.1:8188/upload_internals").json()
+    print(a)   
 
 if __name__=='__main__':
     wait_for_ready()
-    for _ in range(11): queue_prompt([partial(set_all_seeds, random.randint(0,1e9)),])
+    #download_internals()
+    jsonfile = 'workflow_api_fi2.json'
+    for _ in range(100): queue_prompt(jsonfile=jsonfile, make_changes=[partial(set_all_seeds, random.randint(0,1e9)),])
     wait_for_done()
-    time.sleep(60)
+    #upload_internals()
+    time.sleep(10)
