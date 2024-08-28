@@ -171,7 +171,8 @@
   "108": {
     "inputs": {
       "track_hidden_states": "yes",
-      "track_internals": "yes",
+      "just_in_out": "no",
+      "track_internals": "no",
       "model": [
         "62",
         0
