@@ -53,7 +53,7 @@ def upload_internals():
     a = requests.get("http://127.0.0.1:8188/upload_internals").json()
     print(a)   
 
-fi2=True
+fi2=False
 
 if __name__=='__main__':
     wait_for_ready()
