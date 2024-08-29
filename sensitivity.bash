@@ -19,7 +19,7 @@ pushd /workspace
                 pip install -r requirements.txt
                 find . -type f -name '*.runpod' |
                     while IFS= read file_name; do
-                        newname=${file_name/.runpod/}
+                        newname=${file_name/.runpod/}ls
                         mv "$file_name" "$newname"
                     done
             popd
@@ -27,3 +27,4 @@ pushd /workspace
     popd
 popd
 
+wait $(jobs -p)
