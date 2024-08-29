@@ -16,12 +16,8 @@ pushd /workspace
         pushd custom_nodes
             git clone https://github.com/chrisgoringe/flux-poke
             pushd flux-poke
+                cp runpod/* .
                 pip install -r requirements.txt
-                find . -type f -name '*.runpod' |
-                    while IFS= read file_name; do
-                        newname=${file_name/.runpod/}ls
-                        mv "$file_name" "$newname"
-                    done
             popd
         popd
     popd
