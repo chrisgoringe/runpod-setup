@@ -23,4 +23,7 @@ pushd /workspace
     popd
 popd
 
+apt-get update 
+apt-get install -y vim
+
 wait $(jobs -p)
