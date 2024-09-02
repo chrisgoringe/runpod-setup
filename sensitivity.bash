@@ -7,6 +7,7 @@ model="https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/flux1-de
 pushd /workspace
     git clone http://github.com/comfyanonymous/ComfyUI
     pushd ComfyUI
+        wget --header "Authorization: Bearer $HF_READ" https://huggingface.co/city96/FLUX.1-dev-gguf/blob/main/flux1-dev-Q2_K.gguf &
         pushd models
             pushd unet
                 wget --header "Authorization: Bearer $HF_READ" $model &
