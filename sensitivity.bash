@@ -3,7 +3,7 @@ pip install -U "huggingface_hub[cli]"
 git config --global credential.helper store
 huggingface-cli login --token $HF_SAVE --add-to-git-credential
 model="https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/flux1-dev.safetensors"
-gguf="https://huggingface.co/city96/FLUX.1-dev-gguf/blob/main/flux1-dev-Q2_K.gguf"
+gguf="https://huggingface.co/city96/FLUX.1-dev-gguf/resolve/main/flux1-dev-Q2_K.gguf"
 
 pushd /workspace
     git clone http://github.com/comfyanonymous/ComfyUI
