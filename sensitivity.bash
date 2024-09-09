@@ -1,4 +1,3 @@
-
 pip install -U "huggingface_hub[cli]"
 git config --global credential.helper store
 huggingface-cli login --token $HF_SAVE --add-to-git-credential
@@ -25,5 +24,7 @@ popd
 
 apt-get update 
 apt-get install -y vim
+alias flux='cd /workspace/ComfyUI/custom_nodes/flux-poke'
+alias results='cd /workspace/ComfyUI/custom_nodes/flux-poke/output/runpod'
 
 wait $(jobs -p)
