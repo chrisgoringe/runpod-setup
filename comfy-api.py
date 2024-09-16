@@ -25,7 +25,8 @@ def upload(local_filepath, names):
 
 def push_outputs(directory, names):
     for f in os.listdir(directory):
-        upload(os.path.join(directory,f), names)
+        if f.endswith("_.png"):
+            upload(os.path.join(directory,f), names)
 
 def wait_for_ready():
     while True:
