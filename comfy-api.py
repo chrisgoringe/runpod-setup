@@ -62,7 +62,7 @@ if __name__=='__main__':
     with open('prompts.txt', 'r') as f: prompts = f.readlines()
 
     names = []
-    for model in ['flux1-dev_mx5_1.gguf',]:
+    for model in models:
         for i, prompt in enumerate(prompts):
             queue_prompt(jsonfile=jsonfile, make_changes=[modify_widget(203, "string", prompt), 
                                                           modify_widget(194, "unet_name", model)])
