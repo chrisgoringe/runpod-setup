@@ -23,9 +23,9 @@ def upload(local_filepath, names):
     hf = HfFileSystem()
     hf.put_file(lpath=local_filepath, rpath=remote_filepath)
 
-def push_outputs(directory):
+def push_outputs(directory, names):
     for f in os.listdir(directory):
-        upload(os.path.join(directory,f))
+        upload(os.path.join(directory,f), names)
 
 def wait_for_ready():
     while True:
