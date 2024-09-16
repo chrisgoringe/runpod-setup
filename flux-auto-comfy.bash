@@ -27,7 +27,7 @@ pushd /workspace
         pip install -r requirements.txt
         pushd custom_nodes
             git clone https://github.com/city96/ComfyUI-GGUF
-            pushd flux-poke
+            pushd ComfyUI-GGUF
                 pip install -r requirements.txt
             popd
             git clone https://github.com/chrisgoringe/cg-quicknodes
