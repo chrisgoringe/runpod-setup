@@ -1,0 +1,190 @@
+{
+  "5": {
+    "inputs": {
+      "width": 1024,
+      "height": 1024,
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "Empty Latent Image"
+    }
+  },
+  "10": {
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "Load VAE"
+    }
+  },
+  "11": {
+    "inputs": {
+      "clip_name1": "t5xxl_fp16.safetensors",
+      "clip_name2": "clip_l.safetensors",
+      "type": "flux"
+    },
+    "class_type": "DualCLIPLoader",
+    "_meta": {
+      "title": "DualCLIPLoader"
+    }
+  },
+  "16": {
+    "inputs": {
+      "sampler_name": "deis"
+    },
+    "class_type": "KSamplerSelect",
+    "_meta": {
+      "title": "KSamplerSelect"
+    }
+  },
+  "25": {
+    "inputs": {
+      "noise_seed": 17998706123450
+    },
+    "class_type": "RandomNoise",
+    "_meta": {
+      "title": "RandomNoise"
+    }
+  },
+  "38": {
+    "inputs": {
+      "clip_l": [
+        "203",
+        0
+      ],
+      "t5xxl": [
+        "203",
+        0
+      ],
+      "guidance": 3.5,
+      "clip": [
+        "11",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncodeFlux",
+    "_meta": {
+      "title": "CLIPTextEncodeFlux"
+    }
+  },
+  "107": {
+    "inputs": {
+      "filename_prefix": "example",
+      "images": [
+        "151",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  },
+  "149": {
+    "inputs": {
+      "model": [
+        "181",
+        0
+      ],
+      "conditioning": [
+        "38",
+        0
+      ]
+    },
+    "class_type": "BasicGuider",
+    "_meta": {
+      "title": "BasicGuider"
+    }
+  },
+  "150": {
+    "inputs": {
+      "noise": [
+        "25",
+        0
+      ],
+      "guider": [
+        "149",
+        0
+      ],
+      "sampler": [
+        "16",
+        0
+      ],
+      "sigmas": [
+        "180",
+        0
+      ],
+      "latent_image": [
+        "5",
+        0
+      ]
+    },
+    "class_type": "SamplerCustomAdvanced",
+    "_meta": {
+      "title": "SamplerCustomAdvanced"
+    }
+  },
+  "151": {
+    "inputs": {
+      "samples": [
+        "150",
+        0
+      ],
+      "vae": [
+        "10",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "180": {
+    "inputs": {
+      "steps": 25,
+      "denoise": 1
+    },
+    "class_type": "Flux Simple Scheduler",
+    "_meta": {
+      "title": "Flux Simple Scheduler"
+    }
+  },
+  "181": {
+    "inputs": {
+      "max_shift": 3,
+      "base_shift": 0.2,
+      "width": 1024,
+      "height": 1024,
+      "model": [
+        "194",
+        0
+      ]
+    },
+    "class_type": "ModelSamplingFlux",
+    "_meta": {
+      "title": "ModelSamplingFlux"
+    }
+  },
+  "194": {
+    "inputs": {
+      "unet_name": "flux_opt.gguf",
+      "use_flux_precache": "no"
+    },
+    "class_type": "UnetLoaderGGUF",
+    "_meta": {
+      "title": "Unet Loader (GGUF)"
+    }
+  },
+  "203": {
+    "inputs": {
+      "string": ""
+    },
+    "class_type": "SimpleMultilineString",
+    "_meta": {
+      "title": "Simple Multiline String"
+    }
+  }
+}
