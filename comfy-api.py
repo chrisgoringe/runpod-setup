@@ -58,7 +58,7 @@ if __name__=='__main__':
 
     jsonfile = 'workflow_gguf.json'
     models = ['flux1-dev_mx5_1.gguf', 'flux1-dev_mx5_9.gguf', 'flux1-dev_mx6_9.gguf', 'flux1-dev_mx7_4.gguf', 
-              'flux1-dev_mx7_6.gguf', 'flux1-dev_mx8_4.gguf', 'flux1-dev_mx9_2.gguf', 'flux1-dev_mx9_6.gguf', ]
+              'flux1-dev_mx7_6.gguf', 'flux1-dev_mx8_4.gguf', 'flux1-dev_mx9_2.gguf', 'flux1-dev_mx9_6.gguf', ][0]
     
     with open('prompts.txt', 'r') as f: prompts = f.readlines()
 
