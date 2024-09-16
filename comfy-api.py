@@ -67,5 +67,5 @@ if __name__=='__main__':
             names.append( f"model_{model.split('.')[0][-3:]}-prompt_{i}" )
     wait_for_done()
 
-    push_outputs('output', names)
+    push_outputs('/workflow/ComfyUI/output', names)
 
