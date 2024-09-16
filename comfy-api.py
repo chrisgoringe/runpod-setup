@@ -49,6 +49,7 @@ def wait_for_done():
 
 
 def set_node_input(node, input, value, workflow): workflow[str(node)]["inputs"][input] = value
+def modify_widget(node, input, value): return partial(set_node_input, node, input, value)
 
 if __name__=='__main__':
     wait_for_ready()
@@ -62,10 +63,10 @@ if __name__=='__main__':
     names = []
     for model in ['flux1-dev_mx5_1.gguf',]:
         for i, prompt in enumerate(prompts):
-            queue_prompt(jsonfile=jsonfile, make_changes=[partial(set_node_input, 203, "string", prompt), 
-                                                          partial(set_node_input, 194, "unet_name", model)])
+            queue_prompt(jsonfile=jsonfile, make_changes=[modify_widget(203, "string", prompt), 
+                                                          modify_widget(194, "unet_name", model)])
             names.append( f"model_{model.split('.')[0][-3:]}-prompt_{i}" )
     wait_for_done()
 
-    push_outputs('/workflow/ComfyUI/output', names)
+    push_outputs('/workspace/ComfyUI/output', names)
 
