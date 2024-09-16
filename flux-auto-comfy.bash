@@ -33,6 +33,7 @@ pushd /workspace
             git clone https://github.com/chrisgoringe/cg-quicknodes
         popd
         pip install huggingface_hub
+
     popd
 popd
 

@@ -1,7 +1,6 @@
 import json, time
 from urllib import request
 import os
-from tqdm import tqdm
 from functools import partial
 import requests
 from huggingface_hub import HfFileSystem
@@ -49,9 +48,7 @@ def wait_for_done():
             time.sleep(10)
 
 
-def set_prompt(prompt, workflow): workflow["203"]["inputs"]["string"] = prompt
-
-def set_model(model, workflow): workflow["194"]["inputs"]["unet_name"] = model
+def set_node_input(node, input, value, workflow): workflow[str(node)]["inputs"][input] = value
 
 if __name__=='__main__':
     wait_for_ready()
@@ -65,7 +62,8 @@ if __name__=='__main__':
     names = []
     for model in models:
         for i, prompt in enumerate(prompts):
-            queue_prompt(jsonfile=jsonfile, make_changes=[partial(set_prompt, prompt), partial(set_model, model)])
+            queue_prompt(jsonfile=jsonfile, make_changes=[partial(set_node_input, 203, "string", prompt), 
+                                                          partial(set_node_input, 194, "unet_name", model)])
             names.append( f"model_{model.split('.')[0][-3:]}-prompt_{i}" )
     wait_for_done()
 

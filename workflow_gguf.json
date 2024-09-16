@@ -12,7 +12,7 @@
   },
   "10": {
     "inputs": {
-      "vae_name": "ae.safetensors"
+      "vae_name": "ae.sft"
     },
     "class_type": "VAELoader",
     "_meta": {
@@ -113,7 +113,7 @@
         0
       ],
       "sigmas": [
-        "180",
+        "204",
         0
       ],
       "latent_image": [
@@ -140,16 +140,6 @@
     "class_type": "VAEDecode",
     "_meta": {
       "title": "VAE Decode"
-    }
-  },
-  "180": {
-    "inputs": {
-      "steps": 25,
-      "denoise": 1
-    },
-    "class_type": "Flux Simple Scheduler",
-    "_meta": {
-      "title": "Flux Simple Scheduler"
     }
   },
   "181": {
@@ -185,6 +175,21 @@
     "class_type": "SimpleMultilineString",
     "_meta": {
       "title": "Simple Multiline String"
+    }
+  },
+  "204": {
+    "inputs": {
+      "scheduler": "normal",
+      "steps": 30,
+      "denoise": 1,
+      "model": [
+        "194",
+        0
+      ]
+    },
+    "class_type": "BasicScheduler",
+    "_meta": {
+      "title": "BasicScheduler"
     }
   }
 }
