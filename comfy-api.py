@@ -55,19 +55,27 @@ def modify_widget(node, input, value): return partial(set_node_input, node, inpu
 if __name__=='__main__':
     wait_for_ready()
 
-    jsonfile = 'workflow_gguf.json'
-    models = ['flux1-dev_mx5_1.gguf', 'flux1-dev_mx5_9.gguf', 'flux1-dev_mx6_9.gguf', 'flux1-dev_mx7_4.gguf', 
-              'flux1-dev_mx7_6.gguf', 'flux1-dev_mx8_4.gguf', 'flux1-dev_mx9_2.gguf', 'flux1-dev_mx9_6.gguf', ]
+    jsonfile = 'workflow_gguf_2.json'
+    models = ['flux1-dev.safetensors', ]
+    weights = ['default', 'fp8_e4m3fn', 'fp8_e5m2']
     
     with open('prompts.txt', 'r') as f: prompts = f.readlines()
 
-    names = []
-    for model in models:
-        for i, prompt in enumerate(prompts):
-            queue_prompt(jsonfile=jsonfile, make_changes=[modify_widget(203, "string", prompt), 
-                                                          modify_widget(194, "unet_name", model)])
-            names.append( f"model_{model.split('.')[0][-3:]}-prompt_{i}" )
-    wait_for_done()
+    names = []        
+    weight = "default"
+    for i, prompt in enumerate(prompts):
+        queue_prompt(jsonfile=jsonfile, make_changes=[modify_widget(203, "string", prompt), 
+                                                        modify_widget(206, "weight_dtype", weight)])     
+        names.append( f"default-prompt_{i}")   
 
+    wait_for_done()
     push_outputs('/workspace/ComfyUI/output', names)
+
+    prompt = prompts[3]
+    for weight in weights:
+        print (weight)
+        queue_prompt(jsonfile=jsonfile, make_changes=[modify_widget(203, "string", prompt), 
+                                                        modify_widget(206, "weight_dtype", weight)])
+
+
 
