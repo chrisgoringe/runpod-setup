@@ -7,6 +7,7 @@ pushd /workspace
     pushd ComfyUI
         pushd models
             pushd unet
+                wget --header "Authorization: Bearer $HF_READ" https://huggingface.co/ChrisGoringe/MixedQuantFlux/resolve/main/flux1-dev_mx3_8.gguf &
                 #wget --header "Authorization: Bearer $HF_READ" https://huggingface.co/ChrisGoringe/MixedQuantFlux/resolve/main/flux1-dev_mx5_1.gguf &
                 #wget --header "Authorization: Bearer $HF_READ" https://huggingface.co/ChrisGoringe/MixedQuantFlux/resolve/main/flux1-dev_mx5_9.gguf &
                 #wget --header "Authorization: Bearer $HF_READ" https://huggingface.co/ChrisGoringe/MixedQuantFlux/resolve/main/flux1-dev_mx6_9.gguf &
@@ -15,7 +16,7 @@ pushd /workspace
                 #wget --header "Authorization: Bearer $HF_READ" https://huggingface.co/ChrisGoringe/MixedQuantFlux/resolve/main/flux1-dev_mx8_4.gguf &
                 #wget --header "Authorization: Bearer $HF_READ" https://huggingface.co/ChrisGoringe/MixedQuantFlux/resolve/main/flux1-dev_mx9_2.gguf &
                 #wget --header "Authorization: Bearer $HF_READ" https://huggingface.co/ChrisGoringe/MixedQuantFlux/resolve/main/flux1-dev_mx9_6.gguf &
-                wget --header "Authorization: Bearer $HF_READ" https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/flux1-dev.safetensors &
+                #wget --header "Authorization: Bearer $HF_READ" https://huggingface.co/black-forest-labs/FLUX.1-dev/resolve/main/flux1-dev.safetensors &
             popd
             pushd clip
                 wget https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp16.safetensors &
