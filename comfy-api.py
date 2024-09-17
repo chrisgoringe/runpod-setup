@@ -55,16 +55,15 @@ def modify_widget(node, input, value): return partial(set_node_input, node, inpu
 if __name__=='__main__':
     wait_for_ready()
 
-    jsonfile = 'workflow_gguf.json'
-    models = ['flux1-dev_mx3_8.gguf', ]
+    jsonfile = 'workflow_gguf_2.json'
+    #models = ['flux1-dev_mx3_8.gguf', ]
     with open('prompts.txt', 'r') as f: prompts = f.readlines()
 
     names = []        
-    for model in models:
-        for i, prompt in enumerate(prompts):
-            queue_prompt(jsonfile=jsonfile, make_changes=[modify_widget(203, "string", prompt), 
-                                                            modify_widget(194, "unet_name", model)])     
-            names.append( f"default-prompt_{i}")   
+    #for model in models:
+    for i, prompt in enumerate(prompts):
+        queue_prompt(jsonfile=jsonfile, make_changes=[modify_widget(203, "string", prompt),])     
+        names.append( f"default-prompt_{i}")   
 
     wait_for_done()
     push_outputs('/workspace/ComfyUI/output', names)
