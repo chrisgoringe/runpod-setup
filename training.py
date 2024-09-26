@@ -21,7 +21,7 @@ STEPS_PER_PHASE = 500
 RESTARTING = "02000"
 TRAINING_IMAGES_CLASS_TOKEN = ""
 REGULARISATION_IMAGES_CLASS_TOKEN = ""
-DATA_BASE = "/workspace/data"
+DATA_BASE = "/workspace"
 
 if __name__=='__main__': 
     main()
