@@ -490,7 +490,7 @@
   },
   "224": {
     "inputs": {
-      "template": "[Y]\\[X]",
+      "template": "[Y]/[X]",
       "x": [
         "204",
         0
@@ -530,7 +530,7 @@
   },
   "228": {
     "inputs": {
-      "template": "[X]\\[Y]\\[Y]_rank16_bf16-step",
+      "template": "[X]/[Y]/[Y]_rank16_bf16-step",
       "x": [
         "225",
         0
