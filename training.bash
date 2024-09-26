@@ -7,7 +7,7 @@ pushd /workspace
     pushd ComfyUI
         pushd models
             pushd unet
-                wget --header "Authorization: Bearer $HF_READ" https://huggingface.co/lllyasviel/flux1_dev/resolve/main/flux1-dev-fp8.safetensors &
+                wget --header "Authorization: Bearer $HF_READ" https://huggingface.co/Kijai/flux-fp8/resolve/main/flux1-dev-fp8.safetensors &
             popd
             pushd clip
                 wget https://huggingface.co/comfyanonymous/flux_text_encoders/resolve/main/t5xxl_fp8_e4m3fn.safetensors &
