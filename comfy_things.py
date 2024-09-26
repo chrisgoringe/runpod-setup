@@ -34,6 +34,11 @@ def wait_for_done():
             print(f"\r{x} in queue   ", end='') 
             time.sleep(10)
 
+def fix_windows(workflow):
+    for node in workflow:
+        for input in node['inputs']:
+            node['inputs']['input'] = node['inputs']['input'].sub('\\','/')
+
 
 def _set_node_input(node, input, value, workflow): workflow[str(node)]["inputs"][input] = value
 def modify_widget(node, input, value): return partial(_set_node_input, node, input, value)

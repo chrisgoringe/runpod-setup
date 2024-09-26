@@ -1,7 +1,8 @@
-from comfy_things import  modify_widget, delete_node, queue_prompt
+from comfy_things import  modify_widget, delete_node, queue_prompt, fix_windows
 
 def main():
     changes = [
+        fix_windows,
         modify_widget(170, "string", TRAINING_IMAGES_CLASS_TOKEN),  
         modify_widget(172, "int",    STEPS_PER_PHASE),   
         modify_widget(204, "string", NAME),

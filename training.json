@@ -279,11 +279,11 @@
       "model_prediction_type": "raw",
       "guidance_scale": 1,
       "discrete_flow_shift": 3,
-      "highvram": false,
+      "highvram": true,
       "fp8_base": true,
       "gradient_dtype": "bf16",
       "save_dtype": "bf16",
-      "attention_mode": "sdpa",
+      "attention_mode": "xformers",
       "sample_prompts": [
         "186",
         0
