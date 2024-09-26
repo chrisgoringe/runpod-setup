@@ -1,0 +1,586 @@
+{
+  "2": {
+    "inputs": {
+      "transformer": "flux1-dev-fp8.safetensors",
+      "vae": "ae.sft",
+      "clip_l": "clip_l.safetensors",
+      "t5": "t5xxl_fp8_e4m3fn.safetensors",
+      "lora_path": ""
+    },
+    "class_type": "FluxTrainModelSelect",
+    "_meta": {
+      "title": "FluxTrain ModelSelect"
+    }
+  },
+  "4": {
+    "inputs": {
+      "steps": [
+        "172",
+        0
+      ],
+      "network_trainer": [
+        "199",
+        0
+      ]
+    },
+    "class_type": "FluxTrainLoop",
+    "_meta": {
+      "title": "Flux Train Loop"
+    }
+  },
+  "14": {
+    "inputs": {
+      "save_state": true,
+      "copy_to_comfy_lora_folder": false,
+      "network_trainer": [
+        "4",
+        0
+      ]
+    },
+    "class_type": "FluxTrainSave",
+    "_meta": {
+      "title": "Flux Train Save LoRA"
+    }
+  },
+  "37": {
+    "inputs": {
+      "steps": 20,
+      "width": 1024,
+      "height": 1024,
+      "guidance_scale": 2,
+      "seed": 3821,
+      "shift": true,
+      "base_shift": 0.5,
+      "max_shift": 1.15
+    },
+    "class_type": "FluxTrainValidationSettings",
+    "_meta": {
+      "title": "Flux Train Validation Settings"
+    }
+  },
+  "44": {
+    "inputs": {
+      "steps": [
+        "172",
+        0
+      ],
+      "network_trainer": [
+        "14",
+        0
+      ]
+    },
+    "class_type": "FluxTrainLoop",
+    "_meta": {
+      "title": "Flux Train Loop"
+    }
+  },
+  "47": {
+    "inputs": {
+      "save_state": true,
+      "copy_to_comfy_lora_folder": false,
+      "network_trainer": [
+        "44",
+        0
+      ]
+    },
+    "class_type": "FluxTrainSave",
+    "_meta": {
+      "title": "Flux Train Save LoRA"
+    }
+  },
+  "59": {
+    "inputs": {
+      "steps": [
+        "172",
+        0
+      ],
+      "network_trainer": [
+        "47",
+        0
+      ]
+    },
+    "class_type": "FluxTrainLoop",
+    "_meta": {
+      "title": "Flux Train Loop"
+    }
+  },
+  "62": {
+    "inputs": {
+      "save_state": true,
+      "copy_to_comfy_lora_folder": false,
+      "network_trainer": [
+        "59",
+        0
+      ]
+    },
+    "class_type": "FluxTrainSave",
+    "_meta": {
+      "title": "Flux Train Save LoRA"
+    }
+  },
+  "64": {
+    "inputs": {
+      "steps": [
+        "172",
+        0
+      ],
+      "network_trainer": [
+        "62",
+        0
+      ]
+    },
+    "class_type": "FluxTrainLoop",
+    "_meta": {
+      "title": "Flux Train Loop"
+    }
+  },
+  "108": {
+    "inputs": {
+      "color_aug": false,
+      "flip_aug": true,
+      "shuffle_caption": false,
+      "caption_dropout_rate": 0,
+      "alpha_mask": false,
+      "reset_on_queue": false,
+      "caption_extension": ".txt"
+    },
+    "class_type": "TrainDatasetGeneralConfig",
+    "_meta": {
+      "title": "TrainDatasetGeneralConfig"
+    }
+  },
+  "114": {
+    "inputs": {
+      "max_grad_norm": 1,
+      "lr_scheduler": "constant",
+      "lr_warmup_steps": 0,
+      "lr_scheduler_num_cycles": 1,
+      "lr_scheduler_power": 1,
+      "relative_step": false,
+      "scale_parameter": false,
+      "warmup_init": false,
+      "clip_threshold": 1,
+      "min_snr_gamma": 5,
+      "extra_optimizer_args": ""
+    },
+    "class_type": "OptimizerConfigAdafactor",
+    "_meta": {
+      "title": "Optimizer Config Adafactor"
+    }
+  },
+  "133": {
+    "inputs": {
+      "save_state": true,
+      "network_trainer": [
+        "134",
+        0
+      ]
+    },
+    "class_type": "FluxTrainEnd",
+    "_meta": {
+      "title": "Flux LoRA Train End"
+    }
+  },
+  "134": {
+    "inputs": {
+      "save_state": true,
+      "copy_to_comfy_lora_folder": false,
+      "network_trainer": [
+        "64",
+        0
+      ]
+    },
+    "class_type": "FluxTrainSave",
+    "_meta": {
+      "title": "Flux Train Save LoRA"
+    }
+  },
+  "148": {
+    "inputs": {
+      "load_state_path": [
+        "226",
+        0
+      ],
+      "skip_until_initial_step": true
+    },
+    "class_type": "FluxTrainResume",
+    "_meta": {
+      "title": "Flux Train Resume"
+    }
+  },
+  "157": {
+    "inputs": {
+      "x": [
+        "172",
+        0
+      ],
+      "y": 4,
+      "op": "multiply"
+    },
+    "class_type": "SimpleIntegerMaths",
+    "_meta": {
+      "title": "Times Four"
+    }
+  },
+  "170": {
+    "inputs": {
+      "string": "spanked"
+    },
+    "class_type": "SimpleString",
+    "_meta": {
+      "title": "Class Token"
+    }
+  },
+  "172": {
+    "inputs": {
+      "int": 500
+    },
+    "class_type": "SimpleInt",
+    "_meta": {
+      "title": "Steps per phase"
+    }
+  },
+  "186": {
+    "inputs": {
+      "string": "none"
+    },
+    "class_type": "SimpleMultilineString",
+    "_meta": {
+      "title": "Validation prompts"
+    }
+  },
+  "199": {
+    "inputs": {
+      "output_name": [
+        "204",
+        0
+      ],
+      "output_dir": [
+        "224",
+        0
+      ],
+      "network_dim": 16,
+      "network_alpha": 16,
+      "learning_rate": 0.0005,
+      "max_train_steps": [
+        "215",
+        0
+      ],
+      "apply_t5_attn_mask": true,
+      "cache_latents": "disk",
+      "cache_text_encoder_outputs": "disk",
+      "split_mode": true,
+      "weighting_scheme": "logit_normal",
+      "logit_mean": 0,
+      "logit_std": 1,
+      "mode_scale": 1.29,
+      "timestep_sampling": "sigmoid",
+      "sigmoid_scale": 1,
+      "model_prediction_type": "raw",
+      "guidance_scale": 1,
+      "discrete_flow_shift": 3,
+      "highvram": false,
+      "fp8_base": true,
+      "gradient_dtype": "bf16",
+      "save_dtype": "bf16",
+      "attention_mode": "sdpa",
+      "sample_prompts": [
+        "186",
+        0
+      ],
+      "additional_args": "",
+      "train_text_encoder": "disabled",
+      "clip_l_lr": 0,
+      "T5_lr": 0,
+      "gradient_checkpointing": "enabled",
+      "flux_models": [
+        "2",
+        0
+      ],
+      "dataset": [
+        "223",
+        0
+      ],
+      "optimizer_settings": [
+        "114",
+        0
+      ],
+      "resume_args": [
+        "148",
+        0
+      ]
+    },
+    "class_type": "InitFluxLoRATraining",
+    "_meta": {
+      "title": "Init Flux LoRA Training"
+    }
+  },
+  "204": {
+    "inputs": {
+      "string": "rb4"
+    },
+    "class_type": "SimpleString",
+    "_meta": {
+      "title": "Output name"
+    }
+  },
+  "213": {
+    "inputs": {
+      "template": "[X]/landscape",
+      "x": [
+        "224",
+        0
+      ]
+    },
+    "class_type": "CombineStrings",
+    "_meta": {
+      "title": "Aspect"
+    }
+  },
+  "214": {
+    "inputs": {
+      "template": "[X]/portrait",
+      "x": [
+        "224",
+        0
+      ]
+    },
+    "class_type": "CombineStrings",
+    "_meta": {
+      "title": "Aspect"
+    }
+  },
+  "215": {
+    "inputs": {
+      "x": [
+        "157",
+        0
+      ],
+      "y": [
+        "230",
+        0
+      ],
+      "op": "add"
+    },
+    "class_type": "SimpleIntegerMaths",
+    "_meta": {
+      "title": "Add"
+    }
+  },
+  "217": {
+    "inputs": {
+      "plot_style": "classic",
+      "window_size": 100,
+      "normalize_y": true,
+      "width": 768,
+      "height": 512,
+      "log_scale": false,
+      "network_trainer": [
+        "134",
+        0
+      ]
+    },
+    "class_type": "VisualizeLoss",
+    "_meta": {
+      "title": "Visualize Loss"
+    }
+  },
+  "218": {
+    "inputs": {
+      "images": [
+        "217",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "219": {
+    "inputs": {
+      "dataset_path": [
+        "220",
+        0
+      ],
+      "class_tokens": "tween girl bottomless rear view",
+      "num_repeats": 1
+    },
+    "class_type": "TrainDatasetRegularization",
+    "_meta": {
+      "title": "Regularization"
+    }
+  },
+  "220": {
+    "inputs": {
+      "template": "[X]/reg",
+      "x": [
+        "224",
+        0
+      ]
+    },
+    "class_type": "CombineStrings",
+    "_meta": {
+      "title": "Aspect"
+    }
+  },
+  "221": {
+    "inputs": {
+      "width": 1024,
+      "height": 768,
+      "batch_size": 1,
+      "dataset_path": [
+        "213",
+        0
+      ],
+      "class_tokens": [
+        "170",
+        0
+      ],
+      "enable_bucket": true,
+      "bucket_no_upscale": false,
+      "num_repeats": 1,
+      "min_bucket_reso": 256,
+      "max_bucket_reso": 1024,
+      "dataset_config": [
+        "108",
+        0
+      ],
+      "regularization": [
+        "219",
+        0
+      ]
+    },
+    "class_type": "TrainDatasetAdd",
+    "_meta": {
+      "title": "TrainDatasetAdd"
+    }
+  },
+  "223": {
+    "inputs": {
+      "width": 768,
+      "height": 1024,
+      "batch_size": 1,
+      "dataset_path": [
+        "214",
+        0
+      ],
+      "class_tokens": [
+        "170",
+        0
+      ],
+      "enable_bucket": true,
+      "bucket_no_upscale": false,
+      "num_repeats": 1,
+      "min_bucket_reso": 256,
+      "max_bucket_reso": 1024,
+      "dataset_config": [
+        "221",
+        0
+      ],
+      "regularization": [
+        "219",
+        0
+      ]
+    },
+    "class_type": "TrainDatasetAdd",
+    "_meta": {
+      "title": "TrainDatasetAdd"
+    }
+  },
+  "224": {
+    "inputs": {
+      "template": "[Y]\\[X]",
+      "x": [
+        "204",
+        0
+      ],
+      "y": [
+        "225",
+        0
+      ]
+    },
+    "class_type": "CombineStrings",
+    "_meta": {
+      "title": "Combine Strings"
+    }
+  },
+  "225": {
+    "inputs": {
+      "string": "C:\\Users\\chris\\Documents\\GitHub\\ComfyUI\\output"
+    },
+    "class_type": "SimpleMultilineString",
+    "_meta": {
+      "title": "Output base directory"
+    }
+  },
+  "226": {
+    "inputs": {
+      "template": "[X][Y]-state",
+      "x": [
+        "228",
+        0
+      ],
+      "y": "02000"
+    },
+    "class_type": "CombineStrings",
+    "_meta": {
+      "title": "Combine Strings"
+    }
+  },
+  "228": {
+    "inputs": {
+      "template": "[X]\\[Y]\\[Y]_rank16_bf16-step",
+      "x": [
+        "225",
+        0
+      ],
+      "y": [
+        "204",
+        0
+      ]
+    },
+    "class_type": "CombineStrings",
+    "_meta": {
+      "title": "Combine Strings"
+    }
+  },
+  "230": {
+    "inputs": {
+      "string": [
+        "226",
+        2
+      ]
+    },
+    "class_type": "ToInt",
+    "_meta": {
+      "title": "To Int"
+    }
+  },
+  "238": {
+    "inputs": {
+      "title": [
+        "240",
+        0
+      ]
+    },
+    "class_type": "TabTitle",
+    "_meta": {
+      "title": "Tab Title"
+    }
+  },
+  "240": {
+    "inputs": {
+      "template": "[X] [Y]",
+      "x": "train rb4 to",
+      "y": [
+        "215",
+        1
+      ]
+    },
+    "class_type": "CombineStrings",
+    "_meta": {
+      "title": "Combine Strings"
+    }
+  }
+}
