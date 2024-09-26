@@ -24,6 +24,9 @@ pushd /workspace
     popd
 popd
 
+apt-get update
+apt-get install -y vim &
+
 pushd /workspace/ComfyUI
     wait $(jobs -p)
     python main.py --listen &
