@@ -2,7 +2,7 @@
   "2": {
     "inputs": {
       "transformer": "flux1-dev-fp8.safetensors",
-      "vae": "ae.sft",
+      "vae": "ae.safetensors",
       "clip_l": "clip_l.safetensors",
       "t5": "t5xxl_fp8_e4m3fn.safetensors",
       "lora_path": ""

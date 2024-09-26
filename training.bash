@@ -20,6 +20,10 @@ pushd /workspace
         pip install -r requirements.txt
         pushd custom_nodes
             git clone https://github.com/chrisgoringe/cg-quicknodes
+            git clone https://github.com/kijai/ComfyUI-FluxTrainer
+            pushd ComfyUI-FluxTrainer
+                pip install -r requirements.txt
+            popd
         popd
     popd
 popd
